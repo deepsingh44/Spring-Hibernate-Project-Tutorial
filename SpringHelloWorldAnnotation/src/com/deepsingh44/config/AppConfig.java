@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,10 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.deepsingh44.model.User;
@@ -20,11 +25,24 @@ import com.deepsingh44.model.User;
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.deepsingh44" })
 @EnableTransactionManagement
-public class AppConfig {
+public class AppConfig implements WebMvcConfigurer {
 
-	@Bean
-	public InternalResourceViewResolver internalResourceViewResolver() {
-		return new InternalResourceViewResolver("/WEB-INF/views/", ".jsp");
+	//add static resources
+	@Override
+	   public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+	      // Register resource handler for CSS and JS
+	      registry.addResourceHandler("/images/**").addResourceLocations("/images/");
+	   }
+	
+	/*
+	 * @Bean public InternalResourceViewResolver internalResourceViewResolver() {
+	 * return new InternalResourceViewResolver("/WEB-INF/views/", ".jsp"); }
+	 */
+
+	@Override
+	public void configureViewResolvers(ViewResolverRegistry registry) {
+		registry.jsp("/WEB-INF/views/", ".jsp");
 	}
 
 	@Bean
