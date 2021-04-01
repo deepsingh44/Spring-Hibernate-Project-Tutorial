@@ -1,5 +1,7 @@
 package com.deepsingh44.dao;
 
+import javax.persistence.Query;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,7 +27,12 @@ public class UserDaoImpl implements UserDao {
 	@Transactional
 	@Override
 	public User login(String email, String pass) {
-		// TODO Auto-generated method stub
+		Query query=sessionfactory.getCurrentSession().createQuery("from User where email=:email and pass=:pass");
+		query.setParameter("email", email);
+		query.setParameter("pass", pass);
+		if(query.getResultList().size()>0) {
+			return (User)query.getResultList().get(0);
+		}
 		return null;
 	}
 
