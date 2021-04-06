@@ -22,6 +22,10 @@ public class PageController {
 	public String login() {
 		return "login";
 	}
+	@GetMapping("/profile")
+	public String profile() {
+		return "profile";
+	}
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");

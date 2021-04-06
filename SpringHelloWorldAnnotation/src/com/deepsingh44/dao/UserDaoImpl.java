@@ -35,5 +35,13 @@ public class UserDaoImpl implements UserDao {
 		}
 		return null;
 	}
+	@Transactional
+	@Override
+	public int update(User user) {
+		int i=0;
+		sessionfactory.getCurrentSession().update(user);
+		i=1;
+		return i;
+	}
 
 }

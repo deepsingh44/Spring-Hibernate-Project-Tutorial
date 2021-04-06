@@ -28,7 +28,11 @@
 			<c:choose>
 			
 			<c:when test="${sessionScope.user !=null}">
-			<li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+			<li class="nav-item"><a class="nav-link" href="addBook">Add Book</a></li>
+			<li class="nav-item"><a class="nav-link" href="bookList">Book List</a></li>
+			<li class="nav-item"><a class="nav-link" href="orders">Orders</a></li>
+			<li class="nav-item"><a class="nav-link" href="cart">Cart Item</a></li>
+			<li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
 			<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
 			</c:when>
 			
