@@ -12,6 +12,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -83,5 +84,12 @@ public class AppConfig implements WebMvcConfigurer {
 		transactionManager.setSessionFactory(sessionFactory().getObject());
 		System.out.println("transaction " + transactionManager);
 		return transactionManager;
+	}
+	
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver cm = new CommonsMultipartResolver();
+		cm.setMaxUploadSize(5008528);
+		return cm;
 	}
 }

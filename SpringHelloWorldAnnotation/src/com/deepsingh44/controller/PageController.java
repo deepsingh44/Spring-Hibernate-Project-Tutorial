@@ -17,15 +17,22 @@ public class PageController {
 	public String register() {
 		return "register";
 	}
-	
+
 	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
+
 	@GetMapping("/profile")
 	public String profile() {
 		return "profile";
 	}
+
+	@GetMapping("/addBook")
+	public String addBookPage() {
+		return "add_book";
+	}
+
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");
