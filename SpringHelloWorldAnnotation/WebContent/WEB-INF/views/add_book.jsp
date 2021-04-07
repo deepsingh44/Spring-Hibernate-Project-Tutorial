@@ -1,7 +1,7 @@
 <%@include file="head.jsp"%>
 <div class="container">
 	<h1>Add Book</h1>
-	<form action="book/add" method="post" enctype="multipart/form-data">
+	<form action="add" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="name">Book Name:</label> <input type="text"
 				class="form-control" placeholder="Enter name" name="name">
@@ -16,7 +16,7 @@
 		</div>
 		<div class="form-group">
 			<label for="category">Select Category:</label> <select class="form-control"
-				id="category">
+				id="category" name="category">
 				<option>Select Category</option>
 				<option>Education</option>
 				<option>Magazine</option>

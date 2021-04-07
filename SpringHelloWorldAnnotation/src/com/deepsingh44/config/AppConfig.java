@@ -1,6 +1,7 @@
 package com.deepsingh44.config;
 
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import javax.sql.DataSource;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.CacheControl;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.deepsingh44.model.Book;
 import com.deepsingh44.model.User;
 
 @Configuration
@@ -34,6 +37,7 @@ public class AppConfig implements WebMvcConfigurer {
 
 	      // Register resource handler for CSS and JS
 	      registry.addResourceHandler("/images/**").addResourceLocations("/images/");
+	      registry.addResourceHandler("/bookimages/**").addResourceLocations("/bookimages/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));;
 	   }
 	
 	/*
@@ -62,7 +66,7 @@ public class AppConfig implements WebMvcConfigurer {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
 		// sessionFactory.setPackagesToScan(new String[] {"com.example.model"});
-		sessionFactory.setAnnotatedClasses(User.class);
+		sessionFactory.setAnnotatedClasses(User.class,Book.class);
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		System.out.println("deep session " + sessionFactory);
 		return sessionFactory;

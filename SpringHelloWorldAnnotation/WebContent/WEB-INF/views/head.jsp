@@ -11,7 +11,9 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
+
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
 	<!-- Brand -->
 	<a class="navbar-brand" href="#">MyApp</a>
@@ -29,7 +31,7 @@
 			
 			<c:when test="${sessionScope.user !=null}">
 			<li class="nav-item"><a class="nav-link" href="addBook">Add Book</a></li>
-			<li class="nav-item"><a class="nav-link" href="bookList">Book List</a></li>
+			<li class="nav-item"><a class="nav-link" href="list" >Book List</a></li>
 			<li class="nav-item"><a class="nav-link" href="orders">Orders</a></li>
 			<li class="nav-item"><a class="nav-link" href="cart">Cart Item</a></li>
 			<li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
